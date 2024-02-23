@@ -12,12 +12,6 @@ class Product(models.Model):
         return "%.2f" %(float(self.price) * 0.8)
     
     def get_discount(self):
-        try: 
-            return "122"
-        except:
-            return None
-    def get_limited(self):
-        try:
-            return "12"
-        except:
-            return None
+        return "122"
+    def get_limit(self):
+        return "122"
