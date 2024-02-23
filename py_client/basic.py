@@ -1,11 +1,21 @@
 import requests
 
-
-# endpoint = "https://httpbin.org/status/200"
-# endpoint = "https://httpbin.org/anything"
 endpoint = "http://localhost:8000/api/"
 
-get_response = requests.get(endpoint,json={"product_id":123})
+headers = {
+    "Content-Type": "application/json"
+}
 
-print(get_response.json())
-# print(get_response.status_code)
+get_response = requests.post(endpoint, json={"product_id": 123}, headers=headers)
+
+# Uncomment the following lines to print the response headers and text
+# print(get_response.headers)
+# print(get_response.text)
+
+if get_response.text:
+    try:
+        print(get_response.json())
+    except ValueError:
+        print("Response is not in JSON format")
+else:
+    print("Empty Response")
