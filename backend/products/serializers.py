@@ -15,11 +15,16 @@ class ProductSerializer(serializers.ModelSerializer):
             'discount',
             'limited'
         ]
-    # get discount and limited from the model method get_discount and get_limited respectively 
-    # drf will check if there is a methd with the same name as the field and if it finds it it will call it
-    # and return the value of the field
-    # this is how the discount and limited fields are populated
     def get_discount(self,obj):
+        if not hasattr(obj,'id'):
+            return None
+        if not isinstance(obj,Product):
+            return None
         return obj.get_discount()
+    # same thing for other methods
     def get_limited(self,obj):
-        return obj.get_limited()
+        if not hasattr(obj,'id'):
+            return None
+        if not isinstance(obj,Product):
+            return None
+        return obj.get_limit()
